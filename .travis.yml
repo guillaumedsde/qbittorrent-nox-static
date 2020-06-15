@@ -22,4 +22,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: guillaumedsde/qbittorrent-nox-static
-  draft: true
