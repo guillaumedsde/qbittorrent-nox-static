@@ -1,13 +1,21 @@
 os: linux
-
 arch:
   - amd64
   - arm64
   - ppc64le
   - s390x
-
 services:
   - docker
-
 script:
   - docker run -v "$(pwd)/build:/build" alpine sh /build/build.sh
+after_success:
+  - mkdir artifacts
+  - cp build/qbittorrent-nox "artifacts/qbittorrent-nox-$(curl -sNL https://github.com/qbittorrent/qBittorrent/releases | grep -Eom1 'release-([0-9]{1,4}\.?)+')-${TRAVIS_CPU_ARCH}"
+deploy:
+  provider: releases
+  api_key:
+    secure: vQrv2b2yXGplT9cVvF/nmCZaTcCI2a9KS9UbPrFyoVeWChqsCCh54BjMbiM8hu+4O6R5JMku8GSr3GOze6tRzx/8MhZB9oMCNyRoGlSPJrnTEyV8DLOsj9M2kq4tADx4D0mY7LHXdW+I+4frgygNm+/d1UDUQEFYRZxEeA3GTiO+o+4CtWnMG7WyZSVJYxYqky7CQ/BA1GvwX+OjIyJ9mppJICDApKzlIVHpvardsudmnIuajULQCePG+fjD6Uu9Yzdwu6K06xazyKnM2pE9QSizVF03nvf+r8dDlc6tGKJ/vuXAIGNr6iflFhNf/iLs0sjz2MVV6VFialzdMZcwKsVN42ZP8GpYl2drp5Wd23/RwAgI96zsmegMCtm4O68KYCmEmEVNvHq1kjNN70XANK04cs3G413zWkUCcdCTxh0qY3/o7Ps7CcohXqZWrqcl/7nq+DId1xZhDeNwU1b4NvztHKbp0OvU/od1rGW6sakazLtRP8yM6b7XAiZvkpF5vumrn3+cSCbbL9Dvp4oDJAmrq3YhZgIgikAzvJEd6MEwAEjLyDPQcRgAt/iI4JB8wtstkjYwKWEURIqIi6r6yiZHbgdOnZXCTKS2UOJ1oe20bDFpizeMDTA0zVspy0Dwpmk8rIgIK+JisCOWqgpWhhGn4glUgh7yy1jBwV9ShX0=
+  file: artifacts/*
+  on:
+    repo: guillaumedsde/qbittorrent-nox-static
+  skip_cleanup: "true"
