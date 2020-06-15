@@ -1,0 +1,13 @@
+os: linux
+
+arch:
+  - amd64
+  - arm64
+  - ppc64le
+  - s390x
+
+services:
+  - docker
+
+script:
+  - docker run -v "$(pwd)/build:/build" alpine sh /build/build.sh
