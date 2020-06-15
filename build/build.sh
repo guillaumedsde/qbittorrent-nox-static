@@ -13,10 +13,10 @@ chmod 700 ~/qbittorrent-nox-static-musl.sh
 ~/qbittorrent-nox-static-musl.sh
 
 # build static qbittorrent binary
-~/qbittorrent-nox-static-musl.sh all
+~/qbittorrent-nox-static-musl.sh all -b "/root/qbittorrent-build"
 
 # install static qbittorrent binary to /usr/local/bin
-~/qbittorrent-nox-static-musl.sh install
+~/qbittorrent-nox-static-musl.sh install -b "/root/qbittorrent-build"
 
 # copy built binary to the build volume
 cp /usr/local/bin/qbittorrent-nox /build
