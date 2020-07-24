@@ -1,6 +1,8 @@
 os: linux
 dist: bionic
 language: minimal
+# increase idle timeout for jobs
+install: travis_wait 30 mvn install
 arch:
   - amd64
   - arm64
