@@ -1,6 +1,6 @@
 os: linux
 dist: bionic
-language: minimal
+language: ruby
 # increase idle timeout for jobs
 install: travis_wait 30 mvn install
 arch:
