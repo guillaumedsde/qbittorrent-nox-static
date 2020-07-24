@@ -1,8 +1,6 @@
 os: linux
 dist: bionic
-language: ruby
-# increase idle timeout for jobs
-install: travis_wait 30 mvn install
+language: minimal
 arch:
   - amd64
   - arm64
@@ -11,7 +9,7 @@ arch:
 services:
   - docker
 script:
-  - docker run -v "$(pwd)/build:/build" alpine:edge sh /build/build.sh
+  - travis_wait 30 docker run -v "$(pwd)/build:/build" alpine:edge sh /build/build.sh
 after_success:
   - mkdir artifacts
   - cp build/qbittorrent-nox "artifacts/qbittorrent-nox-$(curl -sNL https://github.com/qbittorrent/qBittorrent/releases | grep -Eom1 'release-([0-9]{1,4}\.?)+')-${TRAVIS_CPU_ARCH}"
