@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: default
+name: amd64
 
 platform:
   os: linux
@@ -22,7 +22,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: default
+name: arm
 
 platform:
   os: linux
@@ -43,7 +43,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: default
+name: arm64
 
 platform:
   os: linux
