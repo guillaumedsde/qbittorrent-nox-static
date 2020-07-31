@@ -12,12 +12,12 @@ steps:
     image: alpine
     commands:
       - apk add --no-cache bash wget curl
-      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
-      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox ./
+      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
+      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
 
 ---
 kind: pipeline
@@ -33,12 +33,12 @@ steps:
     image: alpine
     commands:
       - apk add --no-cache bash wget curl
-      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
-      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox ./
+      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
+      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
 
 ---
 kind: pipeline
@@ -54,9 +54,9 @@ steps:
     image: alpine
     commands:
       - apk add --no-cache bash wget curl
-      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh
-      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
-      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox ./
+      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh
+      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
+      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
