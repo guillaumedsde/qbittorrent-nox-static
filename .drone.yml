@@ -1,0 +1,62 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build binary
+    image: alpine
+    commands:
+      - apk add --no-cache bash wget curl
+      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
+      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox ./
+
+---
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+  - name: build binary
+    image: alpine
+    commands:
+      - apk add --no-cache bash wget curl
+      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
+      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox ./
+
+---
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: build binary
+    image: alpine
+    commands:
+      - apk add --no-cache bash wget curl
+      - wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+      - chmod 700 ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh
+      - ./qbittorrent-nox-static-musl.sh all -b "./qbittorrent-build"
+      - ./qbittorrent-nox-static-musl.sh install -b "./qbittorrent-build"
+      - cp /usr/local/bin/qbittorrent-nox ./
