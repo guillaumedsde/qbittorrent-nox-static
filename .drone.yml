@@ -11,6 +11,7 @@ steps:
   - name: build binary
     image: alpine
     commands:
+      - echo "building in $(pwd)"
       - apk add --no-cache bash wget curl
       - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
       - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
@@ -42,6 +43,7 @@ steps:
   - name: build binary
     image: alpine
     commands:
+      - echo "building in $(pwd)"
       - apk add --no-cache bash wget curl
       - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
       - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
@@ -73,6 +75,7 @@ steps:
   - name: build binary
     image: alpine
     commands:
+      - echo "building in $(pwd)"
       - apk add --no-cache bash wget curl
       - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
       - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
