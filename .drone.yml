@@ -18,13 +18,13 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/qbittorrent-nox
+      files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
       event: tag
@@ -49,13 +49,13 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/qbittorrent-nox
+      files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
       event: tag
@@ -80,13 +80,13 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/qbittorrent-nox
+      files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
       event: tag
