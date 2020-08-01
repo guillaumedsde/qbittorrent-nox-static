@@ -2,14 +2,12 @@ os: linux
 dist: bionic
 language: minimal
 arch:
-  - amd64
-  - arm64
   - ppc64le
   - s390x
 services:
   - docker
 script:
-  - travis_wait 30 docker run -v "$(pwd)/build:/build" alpine:edge sh /build/build.sh
+  - docker run -v "$(pwd)/build:/build" alpine:edge sh /build/build.sh
 after_success:
   - mkdir artifacts
   - cp build/qbittorrent-nox "artifacts/qbittorrent-nox-$(curl -sNL https://github.com/qbittorrent/qBittorrent/releases | grep -Eom1 'release-([0-9]{1,4}\.?)+')-${TRAVIS_CPU_ARCH}"
