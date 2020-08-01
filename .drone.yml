@@ -18,17 +18,16 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/*
-      title: Release ${DRONE_COMMIT_SHA}
+      files: build/qbittorrent-nox
+      title: Release ${DRONE_TAG}
     when:
-      event: [push]
-      branch: [master]
+      event: tag
 
 ---
 kind: pipeline
@@ -50,17 +49,16 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/*
-      title: Release ${DRONE_COMMIT_SHA}
+      files: build/qbittorrent-nox
+      title: Release ${DRONE_TAG}
     when:
-      event: [push]
-      branch: [master]
+      event: tag
 
 ---
 kind: pipeline
@@ -82,14 +80,13 @@ steps:
       - $(pwd)/qbittorrent-nox-static-musl.sh
       - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
       - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/
   - name: publish
     image: plugins/github-release
     settings:
       api_key:
         from_secret: github_token
-      files: build/*
-      title: Release ${DRONE_COMMIT_SHA}
+      files: build/qbittorrent-nox
+      title: Release ${DRONE_TAG}
     when:
-      event: [push]
-      branch: [master]
+      event: tag
