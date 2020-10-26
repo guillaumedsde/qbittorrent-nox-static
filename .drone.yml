@@ -38,13 +38,8 @@ steps:
   - name: build binary
     image: alpine
     commands:
-      - echo "building in $(pwd)"
-      - apk add --no-cache bash wget curl
-      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
-      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - chmod +x ./build/build.sh
+      - ./build/build.sh
       - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
@@ -54,7 +49,8 @@ steps:
       files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
-      event: tag
+      event:
+        - tag
 
 ---
 kind: pipeline
@@ -69,13 +65,8 @@ steps:
   - name: build binary
     image: alpine
     commands:
-      - echo "building in $(pwd)"
-      - apk add --no-cache bash wget curl
-      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build"
-      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - chmod +x ./build/build.sh
+      - ./build/build.sh
       - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
@@ -85,4 +76,5 @@ steps:
       files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
-      event: tag
+      event:
+        - tag
