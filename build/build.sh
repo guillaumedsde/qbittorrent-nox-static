@@ -6,7 +6,7 @@ echo "building in $(pwd)"
 apk add --no-cache bash wget curl
 
 # download build script
-wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
+# wget -qO ./qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
 chmod 700 ./qbittorrent-nox-static-musl.sh
 
 # install build dependencies
