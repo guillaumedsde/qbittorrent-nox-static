@@ -11,7 +11,7 @@ steps:
   - name: build binary
     image: alpine
     commands:
-      - ./build.sh
+      - ./build/build.sh
       - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
