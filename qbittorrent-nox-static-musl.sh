@@ -367,7 +367,7 @@ export libtorrent_github_url="https://github.com/arvidn/libtorrent.git"
 #
 export qbittorrent_github_url="https://github.com/qbittorrent/qBittorrent.git"
 #
-export libtorrent_version='1.2'
+export libtorrent_version='2.0'
 if [[ "$GITHUB_TAG" = 'master' || "$libtorrent_github_tag" = 'lm_master' ]]; then
     export libtorrent_github_tag="RC_${libtorrent_version//./_}"
 else
