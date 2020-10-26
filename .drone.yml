@@ -11,13 +11,7 @@ steps:
   - name: build binary
     image: alpine
     commands:
-      - echo "building in $(pwd)"
-      - apk add --no-cache bash wget curl
-      - wget -qO $(pwd)/qbittorrent-nox-static-musl.sh https://git.io/JvLcZ
-      - chmod 700 $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh
-      - $(pwd)/qbittorrent-nox-static-musl.sh all -b "$(pwd)/qbittorrent-build" --libtorrent-master v2.0.0 --qbittorrent-master release-4.3.0
-      - $(pwd)/qbittorrent-nox-static-musl.sh install -b "$(pwd)/qbittorrent-build"
+      - ./build.sh
       - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
   - name: publish
     image: plugins/github-release
@@ -27,7 +21,8 @@ steps:
       files: build/qbittorrent-nox*
       title: Release ${DRONE_TAG}
     when:
-      event: tag
+      event:
+        - tag
 
 ---
 kind: pipeline
