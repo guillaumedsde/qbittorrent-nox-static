@@ -4,29 +4,26 @@ type: docker
 name: amd64
 
 platform:
-  os: linux
-  arch: amd64
+    os: linux
+    arch: amd64
 
 steps:
-  - name: build binary
-    image: alpine
-    commands:
-      - chmod +x ./build/build.sh
-      - ./build/build.sh
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
-  - name: publish
-    image: plugins/github-release
-    settings:
-      api_key:
-        from_secret: github_token
-      files: qbittorrent-nox*
-      title: Release ${DRONE_TAG}
-    when:
-      event:
-        - tag
-trigger:
-  branch:
-  - master
+    - name: build binary
+      image: alpine
+      commands:
+          - chmod +x ./build/build.sh
+          - ./build/build.sh
+          - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
+    - name: publish
+      image: plugins/github-release
+      settings:
+          api_key:
+              from_secret: github_token
+          files: qbittorrent-nox*
+          title: Release ${DRONE_TAG}
+      when:
+          event:
+              - tag
 
 ---
 kind: pipeline
@@ -34,29 +31,26 @@ type: docker
 name: arm
 
 platform:
-  os: linux
-  arch: arm
+    os: linux
+    arch: arm
 
 steps:
-  - name: build binary
-    image: alpine
-    commands:
-      - chmod +x ./build/build.sh
-      - ./build/build.sh
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
-  - name: publish
-    image: plugins/github-release
-    settings:
-      api_key:
-        from_secret: github_token
-      files: build/qbittorrent-nox*
-      title: Release ${DRONE_TAG}
-    when:
-      event:
-        - tag
-trigger:
-  branch:
-  - master
+    - name: build binary
+      image: alpine
+      commands:
+          - chmod +x ./build/build.sh
+          - ./build/build.sh
+          - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
+    - name: publish
+      image: plugins/github-release
+      settings:
+          api_key:
+              from_secret: github_token
+          files: build/qbittorrent-nox*
+          title: Release ${DRONE_TAG}
+      when:
+          event:
+              - tag
 
 ---
 kind: pipeline
@@ -64,26 +58,23 @@ type: docker
 name: arm64
 
 platform:
-  os: linux
-  arch: arm64
+    os: linux
+    arch: arm64
 
 steps:
-  - name: build binary
-    image: alpine
-    commands:
-      - chmod +x ./build/build.sh
-      - ./build/build.sh
-      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
-  - name: publish
-    image: plugins/github-release
-    settings:
-      api_key:
-        from_secret: github_token
-      files: build/qbittorrent-nox*
-      title: Release ${DRONE_TAG}
-    when:
-      event:
-        - tag
-trigger:
-  branch:
-  - master
+    - name: build binary
+      image: alpine
+      commands:
+          - chmod +x ./build/build.sh
+          - ./build/build.sh
+          - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
+    - name: publish
+      image: plugins/github-release
+      settings:
+          api_key:
+              from_secret: github_token
+          files: build/qbittorrent-nox*
+          title: Release ${DRONE_TAG}
+      when:
+          event:
+              - tag
