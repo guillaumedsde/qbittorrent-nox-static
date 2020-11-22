@@ -2,23 +2,23 @@ os: linux
 dist: bionic
 language: minimal
 arch:
-  - ppc64le
-  - s390x
+    # - ppc64le
+    - s390x
 services:
-  - docker
+    - docker
 script:
-  - docker run -v "$(pwd):/qbt" -w=/qbt alpine:edge sh ./build/build.sh
+    - docker run -v "$(pwd):/qbt" -w=/qbt alpine:edge sh ./build/build.sh
 after_success:
-  - mkdir artifacts
-  - cp build/qbittorrent-nox "artifacts/qbittorrent-nox-$(echo $(build/qbittorrent-nox --version) | cut -d' ' -f2)-static-${TRAVIS_CPU_ARCH}"
+    - mkdir artifacts
+    - cp build/qbittorrent-nox "artifacts/qbittorrent-nox-$(echo $(build/qbittorrent-nox --version) | cut -d' ' -f2)-static-${TRAVIS_CPU_ARCH}"
 deploy:
-  provider: releases
-  api_key:
-    secure: Gr4TCAOzOdVomOJmj9HhKtDo0d9tsAayTw8l//Cqe9t8N0eWLUr58Vphg821BBeQeuyrh4bBBcbCO652G4Z1zh6lJAX5uu7acMZkmnDcSNzJoE0XZnGl6gb2bAqbWZiDd+kYm9E18UVcyOEHEJfSPU4SqHN5jN53MHkHl9Vn5QQ4rMYaKZi5jqcn6Ed/Myf4yG1f946gH+SnWBPbIf89RNuDMncUqElx/sOGyKT0p8dP0n6kD6BmYginmImh536oJPpXqJBp61nfll2nihga6y8c71YNSREdxtOsAkUIhtdAstPccOI0Bo8I4y9qghvlZ2ybZ0cA/5VS1n/CaGlakK07esCv+cTG7N+t6Mpo0o0YlwboeBwRavvNiNFMzu0aEvjrnzMJULs3GawXyBxMxwTnF64WTcrPMN65dZp9qr5zITrR1dRqrkkod9S5VkRmu1hWs2p8DRUtiBQxUgqQJEag/kkxwMN5zjd0/XLBr0awO91P0Zr/UdeHYjphL+w0P/dBOVln/0yHmJ619fekXgwv18bvHSRHKbfdVjAq3U1lj27IYBP96ZuPl7dFdx//QelXROw1IvxTnR57js1ee4OkrANO2s3oJLWBdswqF0hLHwHTksdLSdvC0yOXK52onKvfECk3YUEP8MeOU/brCIqXPdUb/w0pvH8uRkIWUVo=
-  file_glob: true
-  file: artifacts/*
-  skip_cleanup: true
-  on:
-    repo: guillaumedsde/qbittorrent-nox-static
-    branch: master
-    tags: true
+    provider: releases
+    api_key:
+        secure: Gr4TCAOzOdVomOJmj9HhKtDo0d9tsAayTw8l//Cqe9t8N0eWLUr58Vphg821BBeQeuyrh4bBBcbCO652G4Z1zh6lJAX5uu7acMZkmnDcSNzJoE0XZnGl6gb2bAqbWZiDd+kYm9E18UVcyOEHEJfSPU4SqHN5jN53MHkHl9Vn5QQ4rMYaKZi5jqcn6Ed/Myf4yG1f946gH+SnWBPbIf89RNuDMncUqElx/sOGyKT0p8dP0n6kD6BmYginmImh536oJPpXqJBp61nfll2nihga6y8c71YNSREdxtOsAkUIhtdAstPccOI0Bo8I4y9qghvlZ2ybZ0cA/5VS1n/CaGlakK07esCv+cTG7N+t6Mpo0o0YlwboeBwRavvNiNFMzu0aEvjrnzMJULs3GawXyBxMxwTnF64WTcrPMN65dZp9qr5zITrR1dRqrkkod9S5VkRmu1hWs2p8DRUtiBQxUgqQJEag/kkxwMN5zjd0/XLBr0awO91P0Zr/UdeHYjphL+w0P/dBOVln/0yHmJ619fekXgwv18bvHSRHKbfdVjAq3U1lj27IYBP96ZuPl7dFdx//QelXROw1IvxTnR57js1ee4OkrANO2s3oJLWBdswqF0hLHwHTksdLSdvC0yOXK52onKvfECk3YUEP8MeOU/brCIqXPdUb/w0pvH8uRkIWUVo=
+    file_glob: true
+    file: artifacts/*
+    skip_cleanup: true
+    on:
+        repo: guillaumedsde/qbittorrent-nox-static
+        branch: master
+        tags: true
