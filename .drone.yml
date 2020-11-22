@@ -24,7 +24,10 @@ steps:
     when:
       event:
         - tag
-
+trigger:
+  branch:
+  - master
+  
 ---
 kind: pipeline
 type: docker
@@ -51,6 +54,9 @@ steps:
     when:
       event:
         - tag
+trigger:
+  branch:
+  - master
 
 ---
 kind: pipeline
@@ -78,3 +84,36 @@ steps:
     when:
       event:
         - tag
+trigger:
+  branch:
+  - master
+
+---
+kind: pipeline
+type: docker
+name: "386"
+
+platform:
+  os: linux
+  arch: "386"
+
+steps:
+  - name: build binary
+    image: alpine
+    commands:
+      - chmod +x ./build/build.sh
+      - ./build/build.sh
+      - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
+  - name: publish
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files: build/qbittorrent-nox*
+      title: Release ${DRONE_TAG}
+    when:
+      event:
+        - tag
+trigger:
+  branch:
+  - master
