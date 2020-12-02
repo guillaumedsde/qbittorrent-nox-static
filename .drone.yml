@@ -11,15 +11,16 @@ steps:
     - name: build binary
       image: alpine
       commands:
+          - mkdir artifacts
           - chmod +x ./build/build.sh
           - ./build/build.sh
-          - cp /usr/local/bin/qbittorrent-nox $(pwd)/build/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
+          - cp /usr/local/bin/qbittorrent-nox $(pwd)/artifacts/qbittorrent-nox-$(echo $(/usr/local/bin/qbittorrent-nox --version) | cut -d' ' -f2)-static-${DRONE_STAGE_ARCH}
     - name: publish
       image: plugins/github-release
       settings:
           api_key:
               from_secret: github_token
-          files: qbittorrent-nox*
+          files: artifacts/qbittorrent-nox*
           title: Release ${DRONE_TAG}
       when:
           event:
