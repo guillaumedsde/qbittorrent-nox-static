@@ -10,7 +10,7 @@ apk add --no-cache bash wget curl
 
 # build static qbittorrent binary
 chmod 700 ./qbittorrent-nox-static.sh
-./qbittorrent-nox-static.sh all -b "$(pwd)/qbittorrent-build" --libtorrent-tag "${LIBTORRENT_VERSION}" --qbittorrent-tag "${QBITTORRENT_VERSION}" --optimize
+./qbittorrent-nox-static.sh all -b "$(pwd)/qbittorrent-build" --libtorrent-tag "${LIBTORRENT_VERSION}" --qbittorrent-tag "${QBITTORRENT_VERSION}"
 
 # install static qbittorrent binary to /usr/local/bin
 ./qbittorrent-nox-static.sh install -b "$(pwd)/qbittorrent-build"
