@@ -1,6 +1,6 @@
 #!/bin/sh
 set -x
-QBITTORRENT_VERSION=release-4.3.1
+QBITTORRENT_VERSION=release-4.3.2
 LIBTORRENT_VERSION=v2.0.1
 
 echo "building qBittorrent ${QBITTORRENT_VERSION} with libtorrent ${LIBTORRENT_VERSION} in $(pwd)"
