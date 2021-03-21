@@ -2,7 +2,9 @@ os: linux
 dist: bionic
 language: minimal
 arch:
-    # - ppc64le
+    - amd64
+    - arm64
+    - ppc64le
     - s390x
 services:
     - docker
