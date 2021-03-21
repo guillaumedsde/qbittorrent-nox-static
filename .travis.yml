@@ -9,7 +9,7 @@ arch:
 services:
     - docker
 script:
-    - docker run -v "$(pwd):/qbt" -w=/qbt alpine:edge sh ./build/build.sh
+    - docker run -v "$(pwd):/qbt" -w=/qbt alpine:3.13 sh ./build/build.sh
 after_success:
     - mkdir artifacts
     - cp qbittorrent-nox "artifacts/qbittorrent-nox-$(echo $(./qbittorrent-nox --version) | cut -d' ' -f2)-static-${TRAVIS_CPU_ARCH}"
